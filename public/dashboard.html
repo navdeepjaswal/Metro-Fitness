@@ -181,7 +181,7 @@
               Add Meal
             </button>
             <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#weightModal">
-              Add Weight 
+              Add Weight
             </button>
             <a id="downloadReportBtn" class="btn btn-primary m-1 d-none">
               Download Report
@@ -300,13 +300,18 @@
   <script>
     var token = localStorage.getItem('token')
     var completedMeasurements = localStorage.getItem('completedMeasurements')
+    var url = ""
+
+    if (location.hostname === "localhost") {
+      url = "http://localhost:3001/"
+    }
 
     if (!token) {
-      window.location.href = "http://localhost:3001/sign-in.html"
+      window.location.href = url + "/sign-in.html"
     }
 
     if (token && completedMeasurements === 'false') {
-      window.location.href = "http://localhost:3001/onboarding.html"
+      window.location.href = url + "/onboarding.html"
     }
 
     $('#datepicker').datepicker()

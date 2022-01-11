@@ -4,11 +4,16 @@ var password = $('#password');
 var confirmPassword = $('#confirmPassword');
 var signInForm = $('#signInForm');
 var signUpForm = $('#signUpForm');
+var url = ""
 
 // Event Listeners
 $("#signInForm").submit(function (event) { signIn(event) });
 $("#signUpForm").submit(function (event) { signUp(event) });
 $('#signOutBtn').click(function () { signOut() });
+
+if (location.hostname === "localhost") {
+    url = "http://localhost:3001/"
+}
 
 // Functions
 function signIn(e) {
@@ -16,7 +21,7 @@ function signIn(e) {
 
     //sign in - ajax request
     if (email.val() && password.val()) {
-        $.post('http://localhost:3001/api/auth/signIn', { 
+        $.post(url + '/api/auth/signIn', { 
             email: email.val(),
             password: password.val()
         })
@@ -32,9 +37,9 @@ function signIn(e) {
                 }
                 //check if user completed onboarding flow
                 if (data.token && data.completedMeasurements) {
-                    window.location.href = "http://localhost:3001/dashboard.html"
+                    window.location.href = url + "/dashboard.html"
                 } else if (data.token && !data.completedMeasurements) {
-                    window.location.href = "http://localhost:3001/onboarding.html"
+                    window.location.href = url + "/onboarding.html"
                 }
             })
             .catch(function (err) {
@@ -51,7 +56,7 @@ function signUp(e) {
     e.preventDefault();
 
     if (email.val() && password.val() && password.val() === confirmPassword.val()) {
-        $.post('http://localhost:3001/api/auth/signUp', {
+        $.post(url + '/api/auth/signUp', {
             email: email.val(),
             password: password.val()
         })
@@ -68,5 +73,5 @@ function signUp(e) {
 
 function signOut() {
     localStorage.clear()
-    window.location.href = "http://localhost:3001/index.html"
+    window.location.href = url + "/index.html"
 }

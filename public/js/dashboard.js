@@ -1,6 +1,11 @@
 /* globals Chart:false, feather:false */
 var token = localStorage.getItem('token')
 var userId = ''
+var url = ""
+
+if (location.hostname === "localhost") {
+  url = "http://localhost:3001/"
+}
 
 if (token) {
   $.ajaxSetup({
@@ -78,7 +83,7 @@ if (token) {
   getWeights()
   getFoodOptions()
 
-  $.get('http://localhost:3001/api/auth/current_user')
+  $.get(url + '/api/auth/current_user')
     .then(user => {
       $('#downloadReportBtn').attr('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(user)))
       $('#downloadReportBtn').attr('download', 'report') 
@@ -99,7 +104,7 @@ if (token) {
     var caloriesBurnt = $('#caloriesBurntInput').val()
 
     // Logging exercise
-    $.post('http://localhost:3001/api/activity/log', {
+    $.post(url + '/api/activity/log', {
       userId: userId,
       burnt: caloriesBurnt
     })
@@ -117,7 +122,7 @@ if (token) {
   $('#submitWeightBtn').click(() => {
     var weight = $('#weightInput').val()
 
-    $.post('http://localhost:3001/api/weight/log', {
+    $.post(url + '/api/weight/log', {
       weight
     })
       .then(weight => {
@@ -147,7 +152,7 @@ if (token) {
 
     if (foundMeal) {
       // Ajax Call
-      $.post('http://localhost:3001/api/foods/log', { foodId })
+      $.post(url + '/api/foods/log', { foodId })
         .then(data => {
           $('#mealPlannerModal').modal('hide')
           $('#mealSelected').val('')
@@ -169,7 +174,7 @@ if (token) {
 
   function getExerciseHistory(date) {
     return new Promise((resolve, reject) => {
-      $.get('http://localhost:3001/api/activity/' + date.toISOString())
+      $.get(url + '/api/activity/' + date.toISOString())
         .then(exercises => {
           renderExerciseHistory(exercises)
           setCaloriesBurnt(exercises)
@@ -184,7 +189,7 @@ if (token) {
 
   function getMeals(date) {
     return new Promise((resolve, reject) => {
-      $.get('http://localhost:3001/api/foods/meals/' + date.toISOString())
+      $.get(url + '/api/foods/meals/' + date.toISOString())
         .then(meals => {
           renderMeals(meals)
           setCaloriesConsumed(meals)
@@ -309,7 +314,7 @@ if (token) {
   }
 
   function getFoodOptions() {
-    $.get('http://localhost:3001/api/foods/')
+    $.get(url + '/api/foods/')
       .then(foods => {
         console.log(foods)
         renderFoodOptions(foods)
@@ -333,7 +338,7 @@ if (token) {
     myChart.reset()
 
     return new Promise((resolve, reject) => {
-      $.get('http://localhost:3001/api/weight/')
+      $.get(url + '/api/weight/')
         .then(weights => {
           console.log(weights)
           $.each(weights, (key, weight) => {

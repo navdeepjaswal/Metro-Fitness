@@ -1,4 +1,9 @@
 var token = localStorage.getItem('token')
+var url = ""
+
+if (location.hostname === "localhost") {
+    url = "http://localhost:3001/"
+}
 
 if (token) {
     $.ajaxSetup({
@@ -85,10 +90,10 @@ function updateUser(e) {
         requestBody.userCalorieIntake = null
     }
 
-    $.post('http://localhost:3001/api/onboarding', requestBody)
+    $.post(url + '/api/onboarding', requestBody)
         .then((data) => {
             localStorage.setItem('completedMeasurements', data.completedMeasurements)
-            window.location.href = "http://localhost:3001/dashboard.html"
+            window.location.href = url + '/dashboard.html'
         })
         .catch((err) => {
             alert("There was a problem submitting your form")
