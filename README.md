@@ -5,7 +5,7 @@ Metro Fitness is a web-based dashboard for all of your fitness needs. With Fitne
 Check it out [here](https://metro-fitness.herokuapp.com/)! In case you are too lazy to register an account, I have a test account available for you! 👇
 
 Username: test@test.com\
-Password: Test1234
+Password: Test123
 
 ## ✨ Main Features ✨
 * Track your calories consumed, calories burnt, and calories remaining for the day
