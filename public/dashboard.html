@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Metro Fitness</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="navbar navbar-light sticky-top bg-light flex-md-nowrap shadow">
+    <div class="container">
+      <h6 class="col-md-3 col-lg-3 mb-0 px-3 p-2"><span style="font-size: 1.25em">🤸</span> Metro Fitness</h6>
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a id="signOutBtn" class="nav-link px-3" href="#">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Exercise</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3 class="mb-3">How many calories did you burn?</h3>
+          <form>
+            <div class="mb-3">
+              <input type="number" class="form-control" id="caloriesBurntInput" placeholder="Enter Amount">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="submitExerciseBtn" type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="mealPlannerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Meal Planner</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3 class="mb-3">Select a Meal</h3>
+          <input class="form-control" list="datalistOptions" id="mealSelected" placeholder="Type to search...">
+          <datalist id="datalistOptions">
+            <option value="San Francisco">
+            <option value="New York">
+            <option value="Seattle">
+            <option value="Los Angeles">
+            <option value="Chicago">
+          </datalist>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="submitMealBtn" type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="weightModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Weight</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3 class="mb-3">How much do you weigh?</h3>
+          <form>
+            <div class="mb-3">
+              <input type="number" class="form-control" id="weightInput" placeholder="Enter Weight (lbs)">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="submitWeightBtn" type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <main class="ms-sm-auto px-md-4">
+        <div class="card mt-3 mb-3">
+          <div class="card-body text-center">
+            <div>
+              <h3 class="card-title">Welcome, <span id="name"></span> 👋</h3>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+              <div class="m-3" style="text-align: center;">
+                <span id="calorieIntake" style="font-size: 25px; color: #10ad88;"></span>
+                <p class="card-text mb-1 fw-bold">Caloric Intake <span class="fw-light">🥗</span></p>
+              </div>
+
+              <span>
+                <i class="fa fa-minus" aria-hidden="true"></i>
+              </span>
+
+              <div class="m-3" style="text-align: center;">
+                <span id="caloriesConsumed" style="font-size: 25px; color: #10ad88;"></span>
+                <p class="card-text mb-1 fw-bold">Calories Consumed <span class="fw-light">🍜</span></p>
+              </div>
+
+              <span>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </span>
+
+              <div class="m-3" style="text-align: center;">
+                <span id="caloriesBurnt" style="font-size: 25px; color: #10ad88;"></span>
+                <p class="card-text mb-1 fw-bold">Calories Burnt <span class="fw-light">🔥</span></p>
+              </div>
+
+              <span style="font-size: 24px" class="fw-bold">
+                =
+              </span>
+
+              <div class="m-3" style="text-align: center;">
+                <span id="caloriesRemaining" style="font-size: 25px; color: #10ad88;"></span>
+                <p class="card-text mb-1 fw-bold">Calories Remaining <span class="fw-light">😋</span></p>
+              </div>
+            </div>
+            <!-- <p class="card-text mb-1 fw-bold"><span class="badge rounded-pill bg-primary">Daily Caloric Intake</span> : <span id="calorieIntake" class="fw-normal"></span></p>
+            <p class="card-text mb-1 fw-bold">Calories Consumed: <span id="caloriesConsumed"></span></p>
+            <p class="card-text mb-1 fw-bold">Calories Burnt: <span id="caloriesBurnt"></span></p> -->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#exerciseModal">
+              Add Exercise
+            </button>
+            <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#mealPlannerModal">
+              Add Meal
+            </button>
+            <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#weightModal">
+              Add Weight 
+            </button>
+            <a id="downloadReportBtn" class="btn btn-primary m-1 d-none">
+              Download Report
+            </a>
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-stretch mt-3 mb-3">
+          <div class="col-lg-6 mb-3">
+            <div class="card" style="height: 100%">
+              <div class="card-body text-center">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                  <h1 class="h2">Progress Tracker 📈</h1>
+                </div>
+                <canvas class="my-4 w-100" id="myChart" width="900" height="350"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-3">
+            <div class="card p-3" style="height: 100%">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+                  <h1 class="h2">Macro Breakdown 🥧</h1>
+                </div>
+                <canvas class="my-4 w-100" id="pieChart" width="900" height="350"></canvas>
+                <div class="d-none noMealsFound">
+                  <h6>Add meals to see your macro breakdown!</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-3">
+            <div class="card p-3" style="height: 100%">
+              <div class="card-body">
+                <h2 class="mb-3">Meal Planner 📆</h2>
+                <div class="input-group input-group-sm date mb-3" id="datepicker">
+                  <input id="mealDate" type="text" class="form-control" placeholder="MM/DD/YYYY">
+                  <span class="input-group-append">
+                    <span class="input-group-text bg-white">
+                      <i class="fa fa-calendar"></i>
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div id="mealPlannerTableContainer" class="table-responsive">
+                <table class="table table-lg">
+                  <thead>
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Food</th>
+                      <th scope="col">Proteins</th>
+                      <th scope="col">Carbs</th>
+                      <th scope="col">Fats</th>
+                      <th scope="col">Calories</th>
+                    </tr>
+                  </thead>
+                  <tbody id="mealPlannerTable">
+                  </tbody>
+                </table>
+              </div>
+              <div class="p-3 d-none noMealsFound">
+                <h6>No meals found.</h6>
+              </div>
+            </div>
+            <!-- <div id="datepicker" class="input-group date flex-nowrap">
+              <input type="text" class="form-control" placeholder="Select Date" aria-label="Username" aria-describedby="addon-wrapping">
+              <span class="input-group-text" id="addon-wrapping"><i class="fa fa-calendar"></i></span>
+            </div> -->
+          </div>
+          <div class="col-lg-6 mt-3">
+            <div class="card p-3" style="height: 100%">
+              <div class="card-body">
+                <h2 class="mb-3">Exercise History 🚴‍♀️</h2>
+                <div id="exerciseTableContainer" class="table-responsive">
+                  <table class="table table-lg">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Calories Burnt</th>
+                      </tr>
+                    </thead>
+                    <tbody id="exerciseHistoryTable">
+                    </tbody>
+                  </table>
+                </div>
+                <div id="noExercisesFound" class="d-none">
+                  <h6>No exercises found.</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/auth.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+    integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    var token = localStorage.getItem('token')
+    var completedMeasurements = localStorage.getItem('completedMeasurements')
+
+    if (!token) {
+      window.location.href = "http://localhost:3001/sign-in.html"
+    }
+
+    if (token && completedMeasurements === 'false') {
+      window.location.href = "http://localhost:3001/onboarding.html"
+    }
+
+    $('#datepicker').datepicker()
+    $('#mealDate').val(moment(new Date()).format('MM/DD/YYYY'))
+  </script>
+</body>
+
+</html>
