@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const logger = require('./middleware/logger');
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const uri = 'mongodb+srv://navTest:ssKdUCToKHEj6sNv@cluster0.fvyp6.mongodb.net/metro-fitness?retryWrites=true&w=majority';
 
