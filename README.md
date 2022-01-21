@@ -1,8 +1,8 @@
 # Metro Fitness 🤸‍♀️
-Metro Fitness is a web-based dashboard for all of your fitness needs. With Fitnex, you can track your calories, weight, meals, and exercises for the day. Easy onboarding process that calculates the best calorie intake for you!
+Metro Fitness is a web-based dashboard for all of your fitness needs. With the Metro-Fitness application, you can track your calories, weight, meals, and exercises for the day. Metro-fitness also consists of an easy onboarding process that calculates the best calorie intake for you!
 
 # [Demo](https://metro-fitness.herokuapp.com/) 🚀
-Check it out [here](https://metro-fitness.herokuapp.com/)! In case you are too lazy to register an account, I have a test account available for you! 👇
+Check it out [here](https://metro-fitness.herokuapp.com/)! In case you are too lazy to register an account, I have a test account available for you!👇😛
 
 Username: test@test.com\
 Password: Test123
