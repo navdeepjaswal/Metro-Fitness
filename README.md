@@ -1,3 +1,5 @@
+![](https://github.com/Metro-Fitness/blob/main/Recording%20%233.gif)
+
 # Metro Fitness 🤸‍♀️
 Metro Fitness is a web-based dashboard for all of your fitness needs. With the Metro-Fitness application, you can track your calories, weight, meals, and exercises for the day. Metro-fitness also consists of an easy onboarding process that calculates the best calorie intake for you!
 
