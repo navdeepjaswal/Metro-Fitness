@@ -1,13 +1,9 @@
+⚠️ Note: The live demo is currently unavailable due to changes in Heroku’s free hosting policy.
+I'm in the process of migrating the app to a new hosting platform. In the meantime, here’s a preview of the project in action:
 ![](https://github.com/navdeepjaswal/Metro-Fitness/blob/main/Recording%20%233.gif)
 
 # Metro Fitness 🤸‍♀️
 Metro Fitness is a web-based dashboard for all of your fitness needs. With the Metro-Fitness application, you can track your calories, weight, meals, and exercises for the day. Metro-fitness also consists of an easy onboarding process that calculates the best calorie intake for you!
-
-# [Demo](https://metro-fitness.herokuapp.com/)🚀
-Check it out [here](https://metro-fitness.herokuapp.com/)! In case you are too lazy to register an account, I have a test account available for you!👇😛
-
-Username: test@test.com\
-Password: Test123
 
 ## ✨ Main Features ✨
 * Track your calories consumed, calories burnt, and calories remaining for the day
