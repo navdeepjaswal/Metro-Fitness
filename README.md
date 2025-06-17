@@ -1,5 +1,6 @@
 ⚠️ Note: The live demo is currently unavailable due to changes in Heroku’s free hosting policy.
 I'm in the process of migrating the app to a new hosting platform. In the meantime, here’s a preview of the project in action:
+
 ![](https://github.com/navdeepjaswal/Metro-Fitness/blob/main/Recording%20%233.gif)
 
 # Metro Fitness 🤸‍♀️
